@@ -1,0 +1,17 @@
+# Build output
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+
+# .NET / IDE
+.vs/
+*.user
+.idea/
+
+# OAuth tokens / local credentials — never publish
+token.json
+*.credentials.json
+
+# OS
+.DS_Store

@@ -1,0 +1,10 @@
+<Project>
+  <!--
+    Written by infra/scripts/publish-oss.sh at export time. Do not edit by hand: it records
+    which upstream build produced this tree, and editing it makes that record a lie.
+  -->
+  <PropertyGroup>
+    <MassiBuild>8</MassiBuild>
+    <MassiCommit>bbedc64</MassiCommit>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "FromAddress": "newsletter@example.com",
+    "KeepRecent": 3,
+    "Delete": true
+  },
+  {
+    "Id": 2,
+    "FromAddress": "notifications@example.com",
+    "KeepRecentTime": "7.00:00:00.0000000",
+    "Delete": true
+  },
+  {
+    "Id": 3,
+    "FromAddress": "receipts@shop.example.com",
+    "KeepRecentTime": "90.00:00:00.0000000",
+    "MoveToFolder": "Receipts"
+  }
+]
