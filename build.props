@@ -1,0 +1,10 @@
+<Project>
+  <!--
+    Written by the release export. Do not edit by hand: it records which upstream build
+    produced this tree, and editing it makes that record a lie.
+  -->
+  <PropertyGroup>
+    <MassiBuild>12</MassiBuild>
+    <MassiCommit>c024da6</MassiCommit>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,42 @@
+<Project>
+
+  <!--
+    The one place the open-source release version is declared. It governs the engine, the CLI
+    and the tests alike. The release process refuses to publish a tag that does not match
+    VersionPrefix, so the tag and the assemblies cannot drift apart.
+  -->
+  <PropertyGroup>
+    <VersionPrefix>0.2.1</VersionPrefix>
+
+    <!--
+      The SDK appends "+<SourceRevisionId>" to InformationalVersion by default, which lands on
+      the end of the build metadata below and silently breaks it into an unparseable shape.
+      BuildInfo owns that field's format; nothing else may write to it. Pinned by
+      BuildInfoTests.ForAssembly_InformationalVersion_IsOnlyEverBuildInfosOwnFormat.
+    -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+
+  <!--
+    The build counter and the upstream commit that produced this tree.
+
+    The public repo publishes source, not binaries, so a released mirror's only claim to
+    identity is what its build stamps into it. The release export writes these into
+    `build.props` beside this file; a contributor who clones the public repo and builds has no
+    such file, and gets an honest "local build" rather than a borrowed counter.
+  -->
+  <Import Project="$(MSBuildThisFileDirectory)build.props"
+          Condition="Exists('$(MSBuildThisFileDirectory)build.props')" />
+
+  <PropertyGroup>
+    <!-- Deliberately NOT part of AssemblyVersion: that stays $(VersionPrefix).0 so a counter
+         bump can never look like a binding-breaking change.
+
+         Both fields require BOTH halves of the stamp. A FileVersion carrying a build number
+         while InformationalVersion reports a local build is a half-stamped assembly that
+         disagrees with itself about what it is — a stamp is all four parts or none. -->
+    <FileVersion Condition="'$(MassiBuild)' != '' And '$(MassiCommit)' != ''">$(VersionPrefix).$(MassiBuild)</FileVersion>
+    <InformationalVersion Condition="'$(MassiBuild)' != '' And '$(MassiCommit)' != ''">$(VersionPrefix)+build.$(MassiBuild).sha.$(MassiCommit)</InformationalVersion>
+  </PropertyGroup>
+
+</Project>
